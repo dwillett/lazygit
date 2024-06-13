@@ -1388,7 +1388,7 @@ func (self *LocalCommitsController) canMoveDown(selectedCommits []*models.Commit
 	if self.isRebasing() {
 		commits := self.c.Model().Commits
 
-		if !commits[endIdx+1].IsTODO() || commits[endIdx+1].Action == models.ActionConflict {
+		if !commits[endIdx+1].IsTODO() || commits[endIdx+1].Status == models.StatusConflicted {
 			return &types.DisabledReason{Text: self.c.Tr.CannotMoveAnyFurther}
 		}
 	}
@@ -1404,7 +1404,7 @@ func (self *LocalCommitsController) canMoveUp(selectedCommits []*models.Commit, 
 	if self.isRebasing() {
 		commits := self.c.Model().Commits
 
-		if !commits[startIdx-1].IsTODO() || commits[startIdx-1].Action == models.ActionConflict {
+		if !commits[startIdx-1].IsTODO() || commits[startIdx-1].Status == models.StatusConflicted {
 			return &types.DisabledReason{Text: self.c.Tr.CannotMoveAnyFurther}
 		}
 	}
