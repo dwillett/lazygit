@@ -683,6 +683,11 @@ func (self *LocalCommitsController) isRebasing() bool {
 	return self.c.Model().WorkingTreeStateAtLastCommitRefresh.Any()
 }
 
+func (self *LocalCommitsController) isCherryPickingOrReverting() bool {
+	return self.c.Model().WorkingTreeStateAtLastCommitRefresh.CherryPicking ||
+		self.c.Model().WorkingTreeStateAtLastCommitRefresh.Reverting
+}
+
 func (self *LocalCommitsController) moveDown(selectedCommits []*models.Commit, startIdx int, endIdx int) error {
 	if self.isRebasing() {
 		if err := self.c.Git().Rebase.MoveTodosDown(selectedCommits); err != nil {
@@ -1414,6 +1419,10 @@ func (self *LocalCommitsController) canMoveUp(selectedCommits []*models.Commit, 
 
 // Ensures that if we are mid-rebase, we're only selecting valid commits (non-conflict TODO commits)
 func (self *LocalCommitsController) midRebaseCommandEnabled(selectedCommits []*models.Commit, startIdx int, endIdx int) *types.DisabledReason {
+	if self.isCherryPickingOrReverting() {
+		return &types.DisabledReason{Text: self.c.Tr.NotAllowedMidCherryPickOrRevert}
+	}
+
 	if !self.isRebasing() {
 		return nil
 	}
@@ -1433,6 +1442,10 @@ func (self *LocalCommitsController) midRebaseCommandEnabled(selectedCommits []*m
 
 // Ensures that if we are mid-rebase, we're only selecting commits that can be moved
 func (self *LocalCommitsController) midRebaseMoveCommandEnabled(selectedCommits []*models.Commit, startIdx int, endIdx int) *types.DisabledReason {
+	if self.isCherryPickingOrReverting() {
+		return &types.DisabledReason{Text: self.c.Tr.NotAllowedMidCherryPickOrRevert}
+	}
+
 	if !self.isRebasing() {
 		if lo.SomeBy(selectedCommits, func(c *models.Commit) bool { return c.IsMerge() }) {
 			return &types.DisabledReason{Text: self.c.Tr.CannotMoveMergeCommit}
@@ -1457,6 +1470,10 @@ func (self *LocalCommitsController) midRebaseMoveCommandEnabled(selectedCommits 
 }
 
 func (self *LocalCommitsController) canDropCommits(selectedCommits []*models.Commit, startIdx int, endIdx int) *types.DisabledReason {
+	if self.isCherryPickingOrReverting() {
+		return &types.DisabledReason{Text: self.c.Tr.NotAllowedMidCherryPickOrRevert}
+	}
+
 	if !self.isRebasing() {
 		if len(selectedCommits) > 1 && lo.SomeBy(selectedCommits, func(c *models.Commit) bool { return c.IsMerge() }) {
 			return &types.DisabledReason{Text: self.c.Tr.DroppingMergeRequiresSingleSelection}
@@ -1501,6 +1518,10 @@ func isChangeOfRebaseTodoAllowed(oldAction todo.TodoCommand) bool {
 }
 
 func (self *LocalCommitsController) pickEnabled(selectedCommits []*models.Commit, startIdx int, endIdx int) *types.DisabledReason {
+	if self.isCherryPickingOrReverting() {
+		return &types.DisabledReason{Text: self.c.Tr.NotAllowedMidCherryPickOrRevert}
+	}
+
 	if !self.isRebasing() {
 		// if not rebasing, we're going to do a pull so we don't care about the selection
 		return nil
