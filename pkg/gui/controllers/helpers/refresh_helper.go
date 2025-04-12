@@ -92,6 +92,7 @@ func (self *RefreshHelper) Refresh(options types.RefreshOptions) error {
 				types.STATUS,
 				types.BISECT_INFO,
 				types.STAGING,
+				types.GRAPHITE_STACKS,
 			})
 		} else {
 			scopeSet = set.NewFromSlice(options.Scope)
@@ -187,6 +188,10 @@ func (self *RefreshHelper) Refresh(options types.RefreshOptions) error {
 			refresh("merge conflicts", func() { _ = self.mergeConflictsHelper.RefreshMergeState() })
 		}
 
+		if scopeSet.Includes(types.GRAPHITE_STACKS) {
+			refresh("graphite stacks", func() { self.refreshGraphiteStacks() })
+		}
+
 		self.refreshStatus()
 
 		wg.Wait()
@@ -226,6 +231,7 @@ func getScopeNames(scopes []types.RefreshableView) []string {
 		types.BISECT_INFO:     "bisect",
 		types.STAGING:         "staging",
 		types.MERGE_CONFLICTS: "mergeConflicts",
+		types.GRAPHITE_STACKS: "graphiteStacks",
 	}
 
 	return lo.Map(scopes, func(scope types.RefreshableView, _ int) string {
@@ -762,4 +768,14 @@ func (self *RefreshHelper) refreshView(context types.Context) {
 		self.searchHelper.ReApplySearch(context)
 		return nil
 	})
+}
+
+func (self *RefreshHelper) refreshGraphiteStacks() {
+	stacks, err := self.c.Git().Loaders.GraphiteStacksLoader.GetStacks()
+	if err != nil {
+		self.c.Log.Error(err)
+		return
+	}
+	self.c.Model().GraphiteStacks = stacks
+	self.refreshView(self.c.Contexts().GraphiteStacks)
 }

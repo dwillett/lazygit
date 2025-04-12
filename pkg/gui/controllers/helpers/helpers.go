@@ -33,6 +33,7 @@ type Helpers struct {
 	GPG            *GpgHelper
 	Upstream       *UpstreamHelper
 	AmendHelper    *AmendHelper
+	ModifyHelper   *ModifyHelper
 	FixupHelper    *FixupHelper
 	Commits        *CommitsHelper
 	Snake          *SnakeHelper

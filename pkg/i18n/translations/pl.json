@@ -247,6 +247,7 @@
   "CommitDescriptionTitle": "Opis commita",
   "CommitDescriptionSubTitle": "Naciśnij {{.togglePanelKeyBinding}}, aby przełączyć fokus, {{.commitMenuKeybinding}}, aby otworzyć menu",
   "LocalBranchesTitle": "Lokalne gałęzie",
+  "GraphiteStacksTitle": "Graphite stacks",
   "SearchTitle": "Szukaj",
   "TagsTitle": "Tagi",
   "CommitMenuTitle": "Menu commita",

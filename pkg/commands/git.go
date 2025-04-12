@@ -9,6 +9,7 @@ import (
 	gogit "github.com/jesseduffield/go-git/v5"
 	"github.com/jesseduffield/lazygit/pkg/commands/git_commands"
 	"github.com/jesseduffield/lazygit/pkg/commands/git_config"
+	"github.com/jesseduffield/lazygit/pkg/commands/graphite_commands"
 	"github.com/jesseduffield/lazygit/pkg/commands/oscommands"
 	"github.com/jesseduffield/lazygit/pkg/commands/patch"
 	"github.com/jesseduffield/lazygit/pkg/common"
@@ -38,20 +39,22 @@ type GitCommand struct {
 	Worktree    *git_commands.WorktreeCommands
 	Version     *git_commands.GitVersion
 	RepoPaths   *git_commands.RepoPaths
+	Graphite    *graphite_commands.GraphiteCommand
 
 	Loaders Loaders
 }
 
 type Loaders struct {
-	BranchLoader       *git_commands.BranchLoader
-	CommitFileLoader   *git_commands.CommitFileLoader
-	CommitLoader       *git_commands.CommitLoader
-	FileLoader         *git_commands.FileLoader
-	ReflogCommitLoader *git_commands.ReflogCommitLoader
-	RemoteLoader       *git_commands.RemoteLoader
-	StashLoader        *git_commands.StashLoader
-	TagLoader          *git_commands.TagLoader
-	Worktrees          *git_commands.WorktreeLoader
+	BranchLoader         *git_commands.BranchLoader
+	CommitFileLoader     *git_commands.CommitFileLoader
+	CommitLoader         *git_commands.CommitLoader
+	FileLoader           *git_commands.FileLoader
+	ReflogCommitLoader   *git_commands.ReflogCommitLoader
+	RemoteLoader         *git_commands.RemoteLoader
+	StashLoader          *git_commands.StashLoader
+	TagLoader            *git_commands.TagLoader
+	Worktrees            *git_commands.WorktreeLoader
+	GraphiteStacksLoader *graphite_commands.GraphiteStacksLoader
 }
 
 func NewGitCommand(
@@ -142,6 +145,10 @@ func NewGitCommandAux(
 	worktreeLoader := git_commands.NewWorktreeLoader(gitCommon)
 	stashLoader := git_commands.NewStashLoader(cmn, cmd)
 	tagLoader := git_commands.NewTagLoader(cmn, cmd)
+	graphiteStacksLoader := graphite_commands.NewGraphiteStacksLoader(cmn, cmd, gitCommon)
+
+	// Create Graphite commands
+	graphiteCommand := graphite_commands.NewGraphiteCommand(cmn, cmd, gitCommon)
 
 	return &GitCommand{
 		Blame:       blameCommands,
@@ -164,16 +171,18 @@ func NewGitCommandAux(
 		WorkingTree: workingTreeCommands,
 		Worktree:    worktreeCommands,
 		Version:     version,
+		Graphite:    graphiteCommand,
 		Loaders: Loaders{
-			BranchLoader:       branchLoader,
-			CommitFileLoader:   commitFileLoader,
-			CommitLoader:       commitLoader,
-			FileLoader:         fileLoader,
-			ReflogCommitLoader: reflogCommitLoader,
-			RemoteLoader:       remoteLoader,
-			Worktrees:          worktreeLoader,
-			StashLoader:        stashLoader,
-			TagLoader:          tagLoader,
+			BranchLoader:         branchLoader,
+			CommitFileLoader:     commitFileLoader,
+			CommitLoader:         commitLoader,
+			FileLoader:           fileLoader,
+			ReflogCommitLoader:   reflogCommitLoader,
+			RemoteLoader:         remoteLoader,
+			Worktrees:            worktreeLoader,
+			StashLoader:          stashLoader,
+			TagLoader:            tagLoader,
+			GraphiteStacksLoader: graphiteStacksLoader,
 		},
 		RepoPaths: repoPaths,
 	}
