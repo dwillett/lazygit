@@ -183,6 +183,7 @@ func (gui *Gui) resetHelpersAndControllers() {
 	verticalScrollControllerFactory := controllers.NewVerticalScrollControllerFactory(common, &gui.viewBufferManagerMap)
 
 	branchesController := controllers.NewBranchesController(common)
+	graphiteStacksController := controllers.NewGraphiteStacksController(common)
 	gitFlowController := controllers.NewGitFlowController(common)
 	stashController := controllers.NewStashController(common)
 	commitFilesController := controllers.NewCommitFilesController(common)
@@ -321,6 +322,10 @@ func (gui *Gui) resetHelpersAndControllers() {
 	controllers.AttachControllers(gui.State.Contexts.Branches,
 		branchesController,
 		gitFlowController,
+	)
+
+	controllers.AttachControllers(gui.State.Contexts.GraphiteStacks,
+		graphiteStacksController,
 	)
 
 	controllers.AttachControllers(gui.State.Contexts.LocalCommits,

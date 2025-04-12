@@ -356,6 +356,7 @@ func (self *ViewDriver) Focus() *ViewDriver {
 		{name: "branches", viewNames: []string{"localBranches", "remotes", "tags"}},
 		{name: "commits", viewNames: []string{"commits", "reflogCommits"}},
 		{name: "stash", viewNames: []string{"stash"}},
+		{name: "graphiteStacks", viewNames: []string{"graphiteStacks"}},
 	}
 
 	for windowIndex, window := range windows {

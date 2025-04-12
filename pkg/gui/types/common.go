@@ -269,15 +269,16 @@ func (self *MenuItem) ID() string {
 }
 
 type Model struct {
-	CommitFiles  []*models.CommitFile
-	Files        []*models.File
-	Submodules   []*models.SubmoduleConfig
-	Branches     []*models.Branch
-	Commits      []*models.Commit
-	StashEntries []*models.StashEntry
-	SubCommits   []*models.Commit
-	Remotes      []*models.Remote
-	Worktrees    []*models.Worktree
+	CommitFiles    []*models.CommitFile
+	Files          []*models.File
+	Submodules     []*models.SubmoduleConfig
+	Branches       []*models.Branch
+	Commits        []*models.Commit
+	StashEntries   []*models.StashEntry
+	SubCommits     []*models.Commit
+	Remotes        []*models.Remote
+	Worktrees      []*models.Worktree
+	GraphiteStacks []*models.GraphiteStack
 
 	// FilteredReflogCommits are the ones that appear in the reflog panel.
 	// when in filtering mode we only include the ones that match the given path
