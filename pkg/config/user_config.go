@@ -874,7 +874,7 @@ func GetDefaultConfig() *UserConfig {
 				NextBlockAlt:                      "l",
 				PrevBlockAlt2:                     "<backtab>",
 				NextBlockAlt2:                     "<tab>",
-				JumpToBlock:                       []string{"1", "2", "3", "4", "5"},
+				JumpToBlock:                       []string{"1", "2", "3", "4", "5", "6"},
 				NextMatch:                         "n",
 				PrevMatch:                         "N",
 				StartSearch:                       "/",

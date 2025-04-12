@@ -803,6 +803,12 @@ func (gui *Gui) viewTabMap() map[string][]context.TabView {
 				ViewName: "submodules",
 			},
 		},
+		"stacks": {
+			{
+				Tab:      gui.c.Tr.GraphiteStacksTitle,
+				ViewName: "graphiteStacks",
+			},
+		},
 	}
 
 	return result

@@ -316,6 +316,7 @@ type TranslationSet struct {
 	CommitDescriptionSubTitle             string
 	CommitDescriptionFooter               string
 	LocalBranchesTitle                    string
+	GraphiteStacksTitle                   string
 	SearchTitle                           string
 	TagsTitle                             string
 	MenuTitle                             string
@@ -1367,6 +1368,7 @@ func EnglishTranslationSet() *TranslationSet {
 		CommitDescriptionSubTitle:            "Press {{.togglePanelKeyBinding}} to toggle focus, {{.commitMenuKeybinding}} to open menu",
 		CommitDescriptionFooter:              "Press {{.confirmInEditorKeybinding}} to commit",
 		LocalBranchesTitle:                   "Local branches",
+		GraphiteStacksTitle:                  "Graphite stacks",
 		SearchTitle:                          "Search",
 		TagsTitle:                            "Tags",
 		MenuTitle:                            "Menu",

@@ -269,6 +269,7 @@
   "CommitDescriptionTitle": "提交信息说明",
   "CommitDescriptionSubTitle": "按 {{.togglePanelKeyBinding}} 键切换焦点, {{.commitMenuKeybinding}} 打开菜单",
   "LocalBranchesTitle": "分支页面",
+  "GraphiteStacksTitle": "Graphite 堆栈",
   "SearchTitle": "搜索",
   "TagsTitle": "标签页面",
   "MenuTitle": "菜单",

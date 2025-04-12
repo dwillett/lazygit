@@ -213,6 +213,7 @@
   "CommitDescriptionTitle": "提交描述",
   "CommitDescriptionSubTitle": "按 tab 鍵聚焦",
   "LocalBranchesTitle": "本地分支",
+  "GraphiteStacksTitle": "Graphite 堆栈",
   "SearchTitle": "搜尋",
   "TagsTitle": "標籤",
   "MenuTitle": "功能表",

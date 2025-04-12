@@ -39,6 +39,7 @@ func (gui *Gui) orderedViewNameMappings() []viewNameMapping {
 		{viewPtr: &gui.Views.Stash, name: "stash"},
 		{viewPtr: &gui.Views.SubCommits, name: "subCommits"},
 		{viewPtr: &gui.Views.CommitFiles, name: "commitFiles"},
+		{viewPtr: &gui.Views.GraphiteStacks, name: "graphiteStacks"},
 
 		{viewPtr: &gui.Views.Staging, name: "staging"},
 		{viewPtr: &gui.Views.StagingSecondary, name: "stagingSecondary"},
@@ -190,6 +191,7 @@ func (gui *Gui) configureViewProperties() {
 	gui.Views.CommitDescription.Title = gui.c.Tr.CommitDescriptionTitle
 	gui.Views.Extras.Title = gui.c.Tr.CommandLog
 	gui.Views.Snake.Title = gui.c.Tr.SnakeTitle
+	gui.Views.GraphiteStacks.Title = gui.c.Tr.GraphiteStacksTitle
 
 	for _, view := range []*gocui.View{gui.Views.Main, gui.Views.Secondary, gui.Views.Staging, gui.Views.StagingSecondary, gui.Views.PatchBuilding, gui.Views.PatchBuildingSecondary, gui.Views.MergeConflicts} {
 		view.Title = gui.c.Tr.DiffTitle
@@ -221,6 +223,7 @@ func (gui *Gui) configureViewProperties() {
 		gui.Views.ReflogCommits.TitlePrefix = jumpLabels[3]
 
 		gui.Views.Stash.TitlePrefix = jumpLabels[4]
+		gui.Views.GraphiteStacks.TitlePrefix = jumpLabels[5]
 	} else {
 		gui.Views.Status.TitlePrefix = ""
 
@@ -236,6 +239,7 @@ func (gui *Gui) configureViewProperties() {
 		gui.Views.ReflogCommits.TitlePrefix = ""
 
 		gui.Views.Stash.TitlePrefix = ""
+		gui.Views.GraphiteStacks.TitlePrefix = ""
 	}
 
 	for _, view := range gui.g.Views() {

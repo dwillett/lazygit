@@ -445,6 +445,7 @@ func sidePanelChildren(args WindowArrangementArgs) func(width int, height int) [
 				fullHeightBox("branches"),
 				fullHeightBox("commits"),
 				fullHeightBox("stash"),
+				fullHeightBox("graphiteStacks"),
 			}
 		} else if height >= 28 {
 			accordionMode := args.UserConfig.Gui.ExpandFocusedSidePanel
@@ -468,6 +469,7 @@ func sidePanelChildren(args WindowArrangementArgs) func(width int, height int) [
 				accordionBox(&boxlayout.Box{Window: "branches", Weight: 1}),
 				accordionBox(&boxlayout.Box{Window: "commits", Weight: 1}),
 				accordionBox(getDefaultStashWindowBox(args)),
+				accordionBox(&boxlayout.Box{Window: "graphiteStacks", Weight: 1}),
 			}
 		} else {
 			squashedHeight := 1
@@ -495,6 +497,7 @@ func sidePanelChildren(args WindowArrangementArgs) func(width int, height int) [
 				squashedSidePanelBox("branches"),
 				squashedSidePanelBox("commits"),
 				squashedSidePanelBox("stash"),
+				squashedSidePanelBox("graphiteStacks"),
 			}
 		}
 	}
