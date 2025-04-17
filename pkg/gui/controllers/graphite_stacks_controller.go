@@ -42,6 +42,14 @@ func (self *GraphiteStacksController) GetKeybindings(opts types.KeybindingsOpts)
 			Tooltip:           self.c.Tr.ModifyCommitTooltip,
 			DisplayOnScreen:   true,
 		},
+		{
+			Key:               opts.GetKey(opts.Config.Graphite.Fold),
+			Handler:           self.withItem(self.fold),
+			GetDisabledReason: self.require(self.singleItemSelected()),
+			Description:       self.c.Tr.Fold,
+			Tooltip:           self.c.Tr.FoldTooltip,
+			DisplayOnScreen:   true,
+		},
 	}
 }
 
@@ -61,6 +69,28 @@ func (self *GraphiteStacksController) modify(stack *models.GraphiteStack) error 
 				}
 				return self.c.Refresh(types.RefreshOptions{Mode: types.ASYNC})
 			})
+		},
+	})
+
+	return nil
+}
+
+func (self *GraphiteStacksController) fold(stack *models.GraphiteStack) error {
+	self.c.Confirm(types.ConfirmOpts{
+		Title:  self.c.Tr.FoldTitle,
+		Prompt: self.c.Tr.FoldPrompt,
+		HandleConfirm: func() error {
+			// First checkout the selected branch
+			if err := self.c.Helpers().Refs.CheckoutRef(stack.Name, types.CheckoutRefOptions{}); err != nil {
+				return err
+			}
+
+			// Then fold the branch
+			if err := self.c.Git().Graphite.Branch.Fold(); err != nil {
+				return err
+			}
+
+			return self.c.Refresh(types.RefreshOptions{Mode: types.ASYNC})
 		},
 	})
 

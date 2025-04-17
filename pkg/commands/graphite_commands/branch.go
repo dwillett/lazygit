@@ -81,3 +81,10 @@ func (b *Branch) ModifyCmdObj() oscommands.ICmdObj {
 
 	return b.GetCmd().New(cmdArgs)
 }
+
+func (b *Branch) Fold() error {
+	cmdArgs := NewGraphiteCmd("fold").
+		ToArgv()
+
+	return b.GetCmd().New(cmdArgs).Run()
+}

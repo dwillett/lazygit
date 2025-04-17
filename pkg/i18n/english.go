@@ -380,6 +380,10 @@ type TranslationSet struct {
 	ModifyCommitTooltip                   string
 	ModifyCommitTitle                     string
 	ModifyCommitPrompt                    string
+	Fold                                  string
+	FoldTooltip                           string
+	FoldTitle                             string
+	FoldPrompt                            string
 	DropCommitTitle                       string
 	DropCommitPrompt                      string
 	DropUpdateRefPrompt                   string
@@ -1445,6 +1449,10 @@ func EnglishTranslationSet() *TranslationSet {
 		ModifyCommitTitle:                    "Modify commit",
 		ModifyCommitPrompt:                   "Are you sure you want to modify this commit with your staged files?",
 		ModifyCommitTooltip:                  "Modify the selected commit",
+		Fold:                                 "Fold",
+		FoldTooltip:                          "Fold the selected commit",
+		FoldTitle:                            "Fold commit",
+		FoldPrompt:                           "Are you sure you want to fold the selected commit?",
 		DropCommitTitle:                      "Drop commit",
 		DropCommitPrompt:                     "Are you sure you want to drop the selected commit(s)?",
 		DropMergeCommitPrompt:                "Are you sure you want to drop the selected merge commit? Note that it will also drop all the commits that were merged in by it.",

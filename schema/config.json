@@ -846,6 +846,10 @@
         "modify": {
           "type": "string",
           "default": "M"
+        },
+        "fold": {
+          "type": "string",
+          "default": "f"
         }
       },
       "additionalProperties": false,

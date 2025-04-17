@@ -552,6 +552,7 @@ type KeybindingCommitMessageConfig struct {
 
 type KeybindingGraphiteConfig struct {
 	Modify string `yaml:"modify"`
+	Fold   string `yaml:"fold"`
 }
 
 // OSConfig contains config on the level of the os
@@ -999,6 +1000,7 @@ func GetDefaultConfig() *UserConfig {
 			},
 			Graphite: KeybindingGraphiteConfig{
 				Modify: "M",
+				Fold:   "f",
 			},
 			AmendAttribute: KeybindingAmendAttributeConfig{
 				ResetAuthor: "a",
