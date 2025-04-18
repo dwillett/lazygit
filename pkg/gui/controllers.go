@@ -114,6 +114,7 @@ func (gui *Gui) resetHelpersAndControllers() {
 		CherryPick:      cherryPickHelper,
 		Upstream:        helpers.NewUpstreamHelper(helperCommon, suggestionsHelper.GetRemoteBranchesSuggestionsFunc),
 		AmendHelper:     helpers.NewAmendHelper(helperCommon, gpgHelper),
+		ModifyHelper:    helpers.NewModifyHelper(helperCommon, gpgHelper),
 		FixupHelper:     helpers.NewFixupHelper(helperCommon),
 		Commits:         commitsHelper,
 		Snake:           helpers.NewSnakeHelper(helperCommon),
@@ -183,6 +184,7 @@ func (gui *Gui) resetHelpersAndControllers() {
 	verticalScrollControllerFactory := controllers.NewVerticalScrollControllerFactory(common, &gui.viewBufferManagerMap)
 
 	branchesController := controllers.NewBranchesController(common)
+	graphiteStacksController := controllers.NewGraphiteStacksController(common)
 	gitFlowController := controllers.NewGitFlowController(common)
 	stashController := controllers.NewStashController(common)
 	commitFilesController := controllers.NewCommitFilesController(common)
@@ -321,6 +323,10 @@ func (gui *Gui) resetHelpersAndControllers() {
 	controllers.AttachControllers(gui.State.Contexts.Branches,
 		branchesController,
 		gitFlowController,
+	)
+
+	controllers.AttachControllers(gui.State.Contexts.GraphiteStacks,
+		graphiteStacksController,
 	)
 
 	controllers.AttachControllers(gui.State.Contexts.LocalCommits,

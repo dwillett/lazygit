@@ -316,6 +316,7 @@ type TranslationSet struct {
 	CommitDescriptionSubTitle             string
 	CommitDescriptionFooter               string
 	LocalBranchesTitle                    string
+	GraphiteStacksTitle                   string
 	SearchTitle                           string
 	TagsTitle                             string
 	MenuTitle                             string
@@ -375,6 +376,18 @@ type TranslationSet struct {
 	AmendCommitWithConflictsMenuPrompt    string
 	AmendCommitWithConflictsContinue      string
 	AmendCommitWithConflictsAmend         string
+	Modify                                string
+	ModifyCommitTooltip                   string
+	ModifyCommitTitle                     string
+	ModifyCommitPrompt                    string
+	Fold                                  string
+	FoldTooltip                           string
+	FoldTitle                             string
+	FoldPrompt                            string
+	Restack                               string
+	RestackTitle                          string
+	RestackPrompt                         string
+	RestackTooltip                        string
 	DropCommitTitle                       string
 	DropCommitPrompt                      string
 	DropUpdateRefPrompt                   string
@@ -925,6 +938,7 @@ type Actions struct {
 	DropCommit                        string
 	EditCommit                        string
 	AmendCommit                       string
+	ModifyBranch                      string
 	ResetCommitAuthor                 string
 	SetCommitAuthor                   string
 	AddCommitCoAuthor                 string
@@ -1367,6 +1381,7 @@ func EnglishTranslationSet() *TranslationSet {
 		CommitDescriptionSubTitle:            "Press {{.togglePanelKeyBinding}} to toggle focus, {{.commitMenuKeybinding}} to open menu",
 		CommitDescriptionFooter:              "Press {{.confirmInEditorKeybinding}} to commit",
 		LocalBranchesTitle:                   "Local branches",
+		GraphiteStacksTitle:                  "Graphite stacks",
 		SearchTitle:                          "Search",
 		TagsTitle:                            "Tags",
 		MenuTitle:                            "Menu",
@@ -1434,6 +1449,18 @@ func EnglishTranslationSet() *TranslationSet {
 		AmendCommitWithConflictsMenuPrompt:   "WARNING: you are about to amend the last finished commit with your resolved conflicts. This is very unlikely to be what you want at this point. More likely, you simply want to continue the rebase instead.\n\nDo you still want to amend the previous commit?",
 		AmendCommitWithConflictsContinue:     "No, continue rebase",
 		AmendCommitWithConflictsAmend:        "Yes, amend previous commit",
+		Modify:                               "Modify",
+		ModifyCommitTitle:                    "Modify commit",
+		ModifyCommitPrompt:                   "Are you sure you want to modify this commit with your staged files?",
+		ModifyCommitTooltip:                  "Modify the selected commit",
+		Fold:                                 "Fold",
+		FoldTooltip:                          "Fold the selected commit",
+		FoldTitle:                            "Fold commit",
+		FoldPrompt:                           "Are you sure you want to fold the selected commit?",
+		Restack:                              "Restack",
+		RestackTitle:                         "Restack branch",
+		RestackPrompt:                        "Are you sure you want to restack the selected branch?",
+		RestackTooltip:                       "Restack the selected branch",
 		DropCommitTitle:                      "Drop commit",
 		DropCommitPrompt:                     "Are you sure you want to drop the selected commit(s)?",
 		DropMergeCommitPrompt:                "Are you sure you want to drop the selected merge commit? Note that it will also drop all the commits that were merged in by it.",
@@ -1941,6 +1968,7 @@ func EnglishTranslationSet() *TranslationSet {
 			DropCommit:                       "Drop commit",
 			EditCommit:                       "Edit commit",
 			AmendCommit:                      "Amend commit",
+			ModifyBranch:                     "Modify branch",
 			ResetCommitAuthor:                "Reset commit author",
 			SetCommitAuthor:                  "Set commit author",
 			AddCommitCoAuthor:                "Add commit co-author",

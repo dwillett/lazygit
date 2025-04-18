@@ -268,6 +268,7 @@
   "CommitDescriptionTitle": "Descrição de Commit",
   "CommitDescriptionSubTitle": "Pressione {{.togglePanelKeyBinding}} para alternar o foco, {{.commitMenuKeybinding}} para abrir o menu",
   "LocalBranchesTitle": "Branches locais",
+  "GraphiteStacksTitle": "Pilhas de Graphite",
   "SearchTitle": "Procurar",
   "TagsTitle": "Etiquetas",
   "MenuTitle": "Menu",

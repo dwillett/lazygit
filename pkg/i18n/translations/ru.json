@@ -175,6 +175,7 @@
   "CommitDescriptionTitle": "Описание коммита",
   "CommitDescriptionSubTitle": "Нажмите вкладку, чтобы переключить фокус",
   "LocalBranchesTitle": "Локальные Ветки",
+  "GraphiteStacksTitle": "Графитовые стеки",
   "SearchTitle": "Поиск",
   "TagsTitle": "Теги",
   "MenuTitle": "Меню",

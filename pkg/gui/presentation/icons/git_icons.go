@@ -16,6 +16,7 @@ var (
 	STASH_ICON                   = "\uf01c"     // 
 	LINKED_WORKTREE_ICON         = "\U000f0339" // 󰌹
 	MISSING_LINKED_WORKTREE_ICON = "\U000f033a" // 󰌺
+	STACK_ICON                   = "\uf51e"     // 
 )
 
 var remoteIcons = map[string]string{

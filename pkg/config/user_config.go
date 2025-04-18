@@ -364,6 +364,7 @@ type KeybindingConfig struct {
 	Main           KeybindingMainConfig           `yaml:"main"`
 	Submodules     KeybindingSubmodulesConfig     `yaml:"submodules"`
 	CommitMessage  KeybindingCommitMessageConfig  `yaml:"commitMessage"`
+	Graphite       KeybindingGraphiteConfig       `yaml:"graphite"`
 }
 
 // damn looks like we have some inconsistencies here with -alt and -alt1
@@ -547,6 +548,12 @@ type KeybindingSubmodulesConfig struct {
 
 type KeybindingCommitMessageConfig struct {
 	CommitMenu string `yaml:"commitMenu"`
+}
+
+type KeybindingGraphiteConfig struct {
+	Modify  string `yaml:"modify"`
+	Fold    string `yaml:"fold"`
+	Restack string `yaml:"restack"`
 }
 
 // OSConfig contains config on the level of the os
@@ -874,7 +881,7 @@ func GetDefaultConfig() *UserConfig {
 				NextBlockAlt:                      "l",
 				PrevBlockAlt2:                     "<backtab>",
 				NextBlockAlt2:                     "<tab>",
-				JumpToBlock:                       []string{"1", "2", "3", "4", "5"},
+				JumpToBlock:                       []string{"1", "2", "3", "4", "5", "6"},
 				NextMatch:                         "n",
 				PrevMatch:                         "N",
 				StartSearch:                       "/",
@@ -991,6 +998,10 @@ func GetDefaultConfig() *UserConfig {
 				OpenInBrowser:                  "o",
 				ViewBisectOptions:              "b",
 				StartInteractiveRebase:         "i",
+			},
+			Graphite: KeybindingGraphiteConfig{
+				Modify: "M",
+				Fold:   "f",
 			},
 			AmendAttribute: KeybindingAmendAttributeConfig{
 				ResetAuthor: "a",

@@ -13,6 +13,7 @@ const (
 	SNAKE_CONTEXT_KEY                    types.ContextKey = "snake"
 	FILES_CONTEXT_KEY                    types.ContextKey = "files"
 	LOCAL_BRANCHES_CONTEXT_KEY           types.ContextKey = "localBranches"
+	GRAPHITE_STACKS_CONTEXT_KEY          types.ContextKey = "graphiteStacks"
 	REMOTES_CONTEXT_KEY                  types.ContextKey = "remotes"
 	WORKTREES_CONTEXT_KEY                types.ContextKey = "worktrees"
 	REMOTE_BRANCHES_CONTEXT_KEY          types.ContextKey = "remoteBranches"
@@ -98,6 +99,7 @@ type ContextTree struct {
 	SubCommits                  *SubCommitsContext
 	Stash                       *StashContext
 	Suggestions                 *SuggestionsContext
+	GraphiteStacks              *GraphiteStacksContext
 	Normal                      types.Context
 	NormalSecondary             types.Context
 	Staging                     *PatchExplorerContext
@@ -135,6 +137,7 @@ func (self *ContextTree) Flatten() []types.Context {
 		self.RemoteBranches,
 		self.Tags,
 		self.Branches,
+		self.GraphiteStacks,
 		self.CommitFiles,
 		self.ReflogCommits,
 		self.LocalCommits,

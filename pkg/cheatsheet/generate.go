@@ -103,6 +103,7 @@ func localisedTitle(tr *i18n.TranslationSet, str string) string {
 		"navigation":        tr.NavigationTitle,
 		"branches":          tr.BranchesTitle,
 		"localBranches":     tr.LocalBranchesTitle,
+		"graphiteStacks":    tr.GraphiteStacksTitle,
 		"files":             tr.FilesTitle,
 		"status":            tr.StatusTitle,
 		"submodules":        tr.SubmodulesTitle,

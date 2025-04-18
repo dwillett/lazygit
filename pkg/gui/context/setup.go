@@ -36,6 +36,7 @@ func NewContextTree(c *ContextCommon) *ContextTree {
 		ReflogCommits:  NewReflogCommitsContext(c),
 		SubCommits:     NewSubCommitsContext(c),
 		Branches:       NewBranchesContext(c),
+		GraphiteStacks: NewGraphiteStacksContext(c),
 		Tags:           NewTagsContext(c),
 		Stash:          NewStashContext(c),
 		Suggestions:    NewSuggestionsContext(c),
