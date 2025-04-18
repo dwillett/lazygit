@@ -50,6 +50,14 @@ func (self *GraphiteStacksController) GetKeybindings(opts types.KeybindingsOpts)
 			Tooltip:           self.c.Tr.FoldTooltip,
 			DisplayOnScreen:   true,
 		},
+		{
+			Key:               opts.GetKey(opts.Config.Graphite.Restack),
+			Handler:           self.withItem(self.restack),
+			GetDisabledReason: self.require(self.singleItemSelected()),
+			Description:       self.c.Tr.Restack,
+			Tooltip:           self.c.Tr.RestackTooltip,
+			DisplayOnScreen:   true,
+		},
 	}
 }
 
@@ -94,5 +102,16 @@ func (self *GraphiteStacksController) fold(stack *models.GraphiteStack) error {
 		},
 	})
 
+	return nil
+}
+
+func (self *GraphiteStacksController) restack(stack *models.GraphiteStack) error {
+	self.c.Confirm(types.ConfirmOpts{
+		Title:  self.c.Tr.RestackTitle,
+		Prompt: self.c.Tr.RestackPrompt,
+		HandleConfirm: func() error {
+			return self.c.Git().Graphite.Stack.Restack()
+		},
+	})
 	return nil
 }

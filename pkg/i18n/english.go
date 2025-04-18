@@ -384,6 +384,10 @@ type TranslationSet struct {
 	FoldTooltip                           string
 	FoldTitle                             string
 	FoldPrompt                            string
+	Restack                               string
+	RestackTitle                          string
+	RestackPrompt                         string
+	RestackTooltip                        string
 	DropCommitTitle                       string
 	DropCommitPrompt                      string
 	DropUpdateRefPrompt                   string
@@ -1453,6 +1457,10 @@ func EnglishTranslationSet() *TranslationSet {
 		FoldTooltip:                          "Fold the selected commit",
 		FoldTitle:                            "Fold commit",
 		FoldPrompt:                           "Are you sure you want to fold the selected commit?",
+		Restack:                              "Restack",
+		RestackTitle:                         "Restack branch",
+		RestackPrompt:                        "Are you sure you want to restack the selected branch?",
+		RestackTooltip:                       "Restack the selected branch",
 		DropCommitTitle:                      "Drop commit",
 		DropCommitPrompt:                     "Are you sure you want to drop the selected commit(s)?",
 		DropMergeCommitPrompt:                "Are you sure you want to drop the selected merge commit? Note that it will also drop all the commits that were merged in by it.",

@@ -551,8 +551,9 @@ type KeybindingCommitMessageConfig struct {
 }
 
 type KeybindingGraphiteConfig struct {
-	Modify string `yaml:"modify"`
-	Fold   string `yaml:"fold"`
+	Modify  string `yaml:"modify"`
+	Fold    string `yaml:"fold"`
+	Restack string `yaml:"restack"`
 }
 
 // OSConfig contains config on the level of the os
